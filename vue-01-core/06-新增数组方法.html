@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>列表渲染</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="n in items">
+        <h2>{{n}}</h2>
+      </li>
+    </ul>
+    <button @click="items.splice(0,3)">修改数组(变异)</button>
+    <!-- slice() 方法可从已有的数组中返回选定的元素 -->
+    <button @click="items.slice(0,3)">修改数组(不变异)</button>
+
+    <p>
+      <span v-for="n in items">
+        {{n}}
+      </span>
+    </p>
+    <p>
+      <span v-for="n in even">
+        {{n}}
+      </span></p>
+    <p>
+      <span v-for="n in odd()">
+        {{n}}
+      </span></p>
+
+    <li v-for="(item, index) in fruits">{{index + 1}}-{{item}}</li>
+
+    <button @click="indexOfMethod">indexOf()找到的元素位置</button>
+    <button @click="filterMethod">filter()过滤</button>
+
+  </div>
+  <script src=" ../node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        items: [1, 3, 5, 7, 9, 2, 4, 6, 8, 0],
+        fruits: [{
+          name: 'apple',
+          count: 2
+        },
+        {
+          name: 'orange',
+          count: 5
+        },
+        {
+          name: 'pear',
+          count: 3
+        },
+        {
+          name: 'orange',
+          count: 16
+        }
+        ],
+        words: ['apple', 'orange', 'apple', 'orange', 'pear', 'orange']
+      },
+
+      computed: {
+        even: function () {
+          return this.items.filter(function (n) {
+            return n % 2 === 0;
+          });
+        }
+      },
+      methods: {
+        odd: function () {
+          return this.items.filter(function (n) {
+            return n % 2 === 1;
+          });
+        },
+        indexOfMethod: function () {
+          console.log('数字3第一次出现的位置是：' + this.items.indexOf(3));
+          console.log('数字5第一次出现的位置是：' + this.items.indexOf(5));
+        },
+        filterMethod: function () {
+          // 获得数量不小于5的水果
+          var arr1 = this.fruits.filter(function (f) {
+            return f.count >= 5;
+          });
+          console.log('获得数量不小于5的水果');
+          console.log(JSON.stringify(arr1));
+
+          // 获得名称中含有r的水果
+          var arr2 = this.fruits.filter(function (f) {
+            return f.name.match(/r/igm);
+          });
+          console.log('获得名称中含有r的水果');
+          console.log(JSON.stringify(arr2));
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
