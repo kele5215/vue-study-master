@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>
+      <label for="name">姓名:</label>
+      <input v-model="name" id="name" name="name" value="tom" />值:
+      <span v-text="name"></span> <span v-html="name"></span> <span>{{name}}</span>
+    </p>
+
+    <p>
+      <label>爱好:</label>
+      <input type="checkbox" v-model="hobbies" value="代码" id="hobbies1" />
+      <label for="hobbies1">代码</label>
+      <input type="checkbox" v-model="hobbies" value="运动" id="hobbies2" />
+      <label for="hobbies2">运动</label>
+      <input type="checkbox" v-model="hobbies" value="音乐" id="hobbies3" />
+      <label for="hobbies3">音乐</label> 值：{{hobbies.join(',')}}
+
+    </p>
+
+    <p>
+      <label>性别:</label>
+      <input type="radio" v-model="sex" value="男" id="sex1" />
+      <label for="sex1">男</label>
+      <input type="radio" v-model="sex" value="女" id="sex2" />
+      <label for="sex2">女</label>
+      <input type="radio" v-model="sex" value="保密" id="sex3" />
+      <label for="sex3">保密</label> 值：{{sex}}
+    </p>
+
+    <p>
+      <label>精通:</label>
+      <select v-model="skill1">
+        <option value="Java">Java</option>
+        <option value="前端">前端</option>
+        <option value="Oracle">Oracle</option>
+        <option value="">--请选择--</option>
+      </select> 值：{{skill1}}
+    </p>
+
+    <p>
+      <label>擅長:</label>
+      <select v-model="skill2" multiple="multiple" size="5">
+        <option value="C#">C#</option>
+        <option value="Ruby">Ruby</option>
+        <option value="Go">Go</option>
+        <option value="PHP">PHP</option>
+        <option value="python">python</option>
+      </select> 值：{{skill2}}
+    </p>
+
+    <p>
+      <input type="checkbox" v-model="isAllow" id="isAllow" />
+      <label>同意本网站协定</label> 值：{{isAllow}}
+    </p>
+
+    <p>
+      <input type="checkbox" v-model="isOk" id="isOk" v-bind:true-value="yes" v-bind:false-value="no" />
+      <label>同意本网站协定</label> 值：{{isOk}}
+    </p>
+
+    <p>
+      <input type="checkbox" v-model="isOk2" id="isOk2" v-bind:true-value="'yes'" v-bind:false-value="'no'" />
+      <label for="isOk2">同意本网站协定</label> 值：{{isOk2}}
+    </p>
+
+    <p>
+      <input type="radio" v-model="isSend" name="isSend" value="發送">发送
+      <input type="radio" v-model="isSend" name="isSend" value="不發送">不发送
+      值：{{isSend}}
+    </p>
+
+    <p>
+      <label>等级</label>
+      <select v-model="grade">
+        <option :value="{level:1}">A级</option>
+        <option :value="{level:2}">B级</option>
+        <option v-bind:value="{level:3}">C级</option>
+      </select>
+      值：{{grade.level}}
+    </p>
+
+    <p>
+      <label for="name">姓名:</label>
+      <textarea rows="5" cols="100">{{name}}</textarea>
+    </p>
+
+    <!-- 在默认情况下， v-model 在 input 事件中同步输入框的值与数据，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步 -->
+    <p>
+    <H3>v-model 在 input 事件中同步输入框的值与数据，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步</H3>
+    <label for="name">姓名</label>
+    <input v-model="name" id="name" name="name" value="tom" /> 值：
+    <span v-text="name"></span>
+    </p>
+    <p>
+      <label>姓名</label>
+      <input v-model.lazy="name" value="tom" /> 值：
+      <span v-text="name"></span>
+    </p>
+
+    <H3>如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 number 给 v-model 来处理输入值</H3>
+    <p>
+      <label for="age">年龄</label>
+      <input v-model="age" id="age" name="age" type="number" /> 值：{{age}}
+    </p>
+    <p>
+      <label for="age">年龄</label>
+      <input v-model.number="age" id="age" name="age" /> 值：{{age}}
+      类型：{{typeof(age)}}
+    </p>
+
+    <H3>如果要自动过滤用户输入的首尾空格，可以添加 trim 修饰符到 v-model 上过滤输入：</H3>
+    <p>
+      <label for="memo1">自我介绍</label>
+      <input v-model="memo1" id="memo1" name="memo1" /> 值：{{memo1}}结束
+    </p>
+    <p>
+      <label for="memo2">自我介绍</label>
+      <input v-model.trim="memo2" id="memo2" name="memo2" /> 值：{{memo2}}结束
+    </p>
+
+  </div>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'vue js!',
+        hobbies: ['代码'],
+        sex: '保密',
+        skill1: '',
+        skill2: [''],
+        isAllow: false,
+        isOk: '同意',
+        yes: '同意',
+        no: '不同意',
+        isOk2: 'no',
+        isSend: '發送',
+        grade: {
+          name: '技术等级',
+          level: 0
+        },
+        age: 20,
+        memo1: '  我是 一个 好学生 ',
+        memo2: '  我是一个好学生   ',
+        contentHtml: '<span style="color: red;">红色字体内容</span>',
+        imgUrl: 'https://cn.vuejs.org/images/logo.png'
+      }
+    });
+  </script>
+</body>
+
+</html>

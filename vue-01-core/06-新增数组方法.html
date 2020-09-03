@@ -35,6 +35,9 @@
 
     <button @click="indexOfMethod">indexOf()找到的元素位置</button>
     <button @click="filterMethod">filter()过滤</button>
+    <button @click="forEachMethod">forEach()迭代</button>
+    <button @click="mapMethod">map()映射</button>
+    <button @click="reduceMethod">reduce()累加器</button>
 
   </div>
   <script src=" ../node_modules/vue/dist/vue.js"></script>
@@ -90,10 +93,52 @@
 
           // 获得名称中含有r的水果
           var arr2 = this.fruits.filter(function (f) {
+            /*  i 执行对大小写不敏感的匹配。
+                g 执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。
+                m 执行多行匹配。 */
             return f.name.match(/r/igm);
           });
           console.log('获得名称中含有r的水果');
           console.log(JSON.stringify(arr2));
+        },
+        forEachMethod: function () {
+          this.fruits.forEach(function (obj, index) {
+            console.log((index + 1) + '-' + obj.name + '-' + obj.count);
+          });
+        },
+        mapMethod: function () {
+          var arr3 = this.fruits.map(function (obj, index) {
+            obj.showInfo = index + '->水果：' + obj.name + '，数量：' + obj.count;
+            return obj;
+          });
+          console.log('mach后的结果');
+          console.log(JSON.stringify(arr3));
+        },
+        reduceMethod: function () {
+          this.words.forEach(function (obj, index) {
+            console.log(index + '-' + obj);
+          });
+          var objs = {};
+          for (var i = 0, l = this.words.length; i < l; i++) {
+            var item = this.words[i];
+            objs[item] = (objs[item] + 1) || 1;
+          }
+          console.log(JSON.stringify(objs));
+
+          // reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+          /*
+          array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+            total:必需。初始值, 或者计算结束后的返回值。
+            currentValue:必需。当前元素
+          */
+          var objs2 = this.words.reduce(function (prev, next) {
+            console.log('prev:', JSON.stringify(prev));
+            console.log('next:', JSON.stringify(next));
+
+            prev[next] = (prev[next] + 1) || 1;
+            return prev;
+          }, {});
+          console.log(JSON.stringify(objs2));
         }
       }
     });
