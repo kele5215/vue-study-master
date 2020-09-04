@@ -1,63 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-  <div id="app">
-    数学：<input type="text" v-model="mathScore">
-    英语：<input type="text" v-model="englishScore">
-    总分-方法：<input type="text" v-model="sumScore()">
-    总分-计算属性-单向：<input type="text" v-model="computedScore1">
-    总分-计算属性-双向：<input type="text" v-model="computedScore2">
-    总分-wacth：<input type="text" v-model="computedScore3">
-  </div>
-  <script src=" ../node_modules/vue/dist/vue.js"></script>
-  <script type="text/javascript">
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        mathScore: 80,
-        englishScore: 60,
-        computedScore3: 170
-      },
-      methods: {
-        sumScore: function () {
-          console.log('sumScore被调用');
-          return (this.mathScore - 0) + (this.englishScore - 0);
-        }
-      },
-      computed: {
-        computedScore1: function () {
-          console.log('computedScore1被调用');
-          return (this.mathScore - 0) + (this.englishScore - 0);
+  <body>
+    <div id="app">
+      数学：
+      <input type="text" v-model="mathScore" />
+      英语：
+      <input type="text" v-model="englishScore" />
+      总分-方法：
+      <input type="text" v-model="sumScore()" />
+      总分-计算属性-单向：
+      <input type="text" v-model="computedScore1" />
+      总分-计算属性-双向：
+      <input type="text" v-model="computedScore2" />
+      总分-wacth：
+      <input type="text" v-model="computedScore3" />
+    </div>
+    <script src=" ../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          mathScore: 80,
+          englishScore: 60,
+          computedScore3: 170,
         },
-        computedScore2: {
-          get: function () {
-            console.log('computedScore2-get被调用');
-            return (this.mathScore - 0) + (this.englishScore - 0);
+        methods: {
+          sumScore: function () {
+            console.log('sumScore被调用')
+            return this.mathScore - 0 + (this.englishScore - 0)
           },
-          set: function (newValue) {
-            var avgScore = newValue / 2;
-            this.mathScore = avgScore;
-            this.englishScore = avgScore;
-          }
-        }
-      },
-      watch: {
-        mathScore: function (newValue, oldValue) {
-          this.computedScore3 = (newValue - 0) + (this.englishScore - 0);
-        }
-      }
-    });
-    vm.$watch('englishScore', function (newValue) {
-      this.computedScore3 = (newValue - 0) + (this.mathScore - 0);
-    });
-  </script>
-</body>
-
+        },
+        computed: {
+          computedScore1: function () {
+            console.log('computedScore1被调用')
+            return this.mathScore - 0 + (this.englishScore - 0)
+          },
+          computedScore2: {
+            get: function () {
+              console.log('computedScore2-get被调用')
+              return this.mathScore - 0 + (this.englishScore - 0)
+            },
+            set: function (newValue) {
+              var avgScore = newValue / 2
+              this.mathScore = avgScore
+              this.englishScore = avgScore
+            },
+          },
+        },
+        watch: {
+          mathScore: function (newValue, oldValue) {
+            this.computedScore3 = newValue - 0 + (this.englishScore - 0)
+          },
+        },
+      })
+      vm.$watch('englishScore', function (newValue) {
+        this.computedScore3 = newValue - 0 + (this.mathScore - 0)
+      })
+    </script>
+  </body>
 </html>

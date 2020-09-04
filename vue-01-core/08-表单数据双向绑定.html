@@ -3,21 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>表单</title>
   </head>
 
   <body>
     <div id="app">
-      <p>Hello , {{msg}}</p>
-      <input type="text" v-model="msg" />
+      <form>
+        <p>
+          姓名：
+          <input type="text" v-model="txtNm" />
+        </p>
+      </form>
     </div>
+
     <script src="../node_modules/vue/dist/vue.js"></script>
     <script type="text/javascript">
       var vm = new Vue({
         el: '#app',
         data: {
-          msg: 'vue js!',
+          txtNm: '',
         },
+        methods: {},
       })
     </script>
   </body>

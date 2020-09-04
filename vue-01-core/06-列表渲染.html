@@ -1,81 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app">
+      <h3>迭代 属猪</h3>
+      <ul>
+        <li v-for="(item, index) in emps" :key="index">
+          标号:{{index +1}} 姓名: {{item.name}} 工资: {{item.salary}}
+        </li>
+      </ul>
 
-<body>
-  <div id="app">
-    <h3>迭代 属猪</h3>
-    <ul>
-      <li v-for="(item, index) in emps" :key="index">
-        标号:{{index +1}} 姓名: {{item.name}} 工资: {{item.salary}}
-      </li>
-    </ul>
+      <h3>迭代 对象</h3>
+      <ul>
+        <li v-for="(value, key, index) in emps[0]">第{{index +1}}属性为: {{key}} = {{value}}</li>
+      </ul>
 
-    <h3>迭代 对象</h3>
-    <ul>
-      <li v-for="(value, key, index) in emps[0]">
-        第{{index +1}}属性为: {{key}} = {{value}}
-      </li>
-    </ul>
+      <template v-for="(item, index) in users" :key="index">
+        <li>{{index +1}}- {{item.name}}</li>
+        <hr />
+      </template>
 
-    <template v-for="(item, index) in users" :key="index">
-      <li>{{index +1}}- {{item.name}}</li>
-      <hr />
-    </template>
-
-    <h3>遍历对象中的所有属性value</h3>
-    <li v-for="item in product">{{item}}</li>
-    <h3>遍历对象中的所有属性value - key</h3>
-    <li v-for="(value,key) in product">{{key}}-{{value}}</li>
-    <h3>遍历对象中的所有属性value - key - index</h3>
-    <li v-for="(value,key,index) in product" :key="index">{{index +1 }}-{{key}}-{{value}}</li>
-    <h3>整数迭代 v-for</h3>
-    <p><span v-for="n in 10">{{n}}-</span></p>
-  </div>
-  <script src=" ../node_modules/vue/dist/vue.js"></script>
-  <script type="text/javascript">
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        emps: [{
-          name: 'a',
-          salary: 2000
+      <h3>遍历对象中的所有属性value</h3>
+      <li v-for="item in product">{{item}}</li>
+      <h3>遍历对象中的所有属性value - key</h3>
+      <li v-for="(value,key) in product">{{key}}-{{value}}</li>
+      <h3>遍历对象中的所有属性value - key - index</h3>
+      <li v-for="(value,key,index) in product" :key="index">{{index +1 }}-{{key}}-{{value}}</li>
+      <h3>整数迭代 v-for</h3>
+      <p><span v-for="n in 10">{{n}}-</span></p>
+    </div>
+    <script src=" ../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          emps: [
+            {
+              name: 'a',
+              salary: 2000,
+            },
+            {
+              name: 'b',
+              salary: 3000,
+            },
+            {
+              name: 'c',
+              salary: 4000,
+            },
+          ],
+          users: [
+            {
+              name: 'tom',
+              age: 18,
+            },
+            {
+              name: 'rose',
+              age: 87,
+            },
+            {
+              name: 'mark',
+              age: 16,
+            },
+          ],
+          product: {
+            name: '苹果',
+            price: 5.8,
+            unit: '千克',
+          },
         },
-        {
-          name: 'b',
-          salary: 3000
-        },
-        {
-          name: 'c',
-          salary: 4000
-        }
-        ],
-        users: [{
-          name: 'tom',
-          age: 18
-        },
-        {
-          name: 'rose',
-          age: 87
-        },
-        {
-          name: 'mark',
-          age: 16
-        }
-        ],
-        product: {
-          name: '苹果',
-          price: 5.8,
-          unit: '千克'
-        }
-      }
-    });
-  </script>
-</body>
-
+      })
+    </script>
+  </body>
 </html>

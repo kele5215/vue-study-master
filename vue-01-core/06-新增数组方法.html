@@ -1,148 +1,144 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>列表渲染</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>列表渲染</title>
-</head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="n in items">
+          <h2>{{n}}</h2>
+        </li>
+      </ul>
+      <button @click="items.splice(0,3)">修改数组(变异)</button>
+      <!-- slice() 方法可从已有的数组中返回选定的元素 -->
+      <button @click="items.slice(0,3)">修改数组(不变异)</button>
 
-<body>
-  <div id="app">
-    <ul>
-      <li v-for="n in items">
-        <h2>{{n}}</h2>
-      </li>
-    </ul>
-    <button @click="items.splice(0,3)">修改数组(变异)</button>
-    <!-- slice() 方法可从已有的数组中返回选定的元素 -->
-    <button @click="items.slice(0,3)">修改数组(不变异)</button>
+      <p>
+        <span v-for="n in items">{{n}}</span>
+      </p>
+      <p>
+        <span v-for="n in even">{{n}}</span>
+      </p>
+      <p>
+        <span v-for="n in odd()">{{n}}</span>
+      </p>
 
-    <p>
-      <span v-for="n in items">
-        {{n}}
-      </span>
-    </p>
-    <p>
-      <span v-for="n in even">
-        {{n}}
-      </span></p>
-    <p>
-      <span v-for="n in odd()">
-        {{n}}
-      </span></p>
+      <li v-for="(item, index) in fruits">{{index + 1}}-{{item}}</li>
 
-    <li v-for="(item, index) in fruits">{{index + 1}}-{{item}}</li>
-
-    <button @click="indexOfMethod">indexOf()找到的元素位置</button>
-    <button @click="filterMethod">filter()过滤</button>
-    <button @click="forEachMethod">forEach()迭代</button>
-    <button @click="mapMethod">map()映射</button>
-    <button @click="reduceMethod">reduce()累加器</button>
-
-  </div>
-  <script src=" ../node_modules/vue/dist/vue.js"></script>
-  <script type="text/javascript">
-    var app = new Vue({
-      el: '#app',
-      data: {
-        items: [1, 3, 5, 7, 9, 2, 4, 6, 8, 0],
-        fruits: [{
-          name: 'apple',
-          count: 2
+      <button @click="indexOfMethod">indexOf()找到的元素位置</button>
+      <button @click="filterMethod">filter()过滤</button>
+      <button @click="forEachMethod">forEach()迭代</button>
+      <button @click="mapMethod">map()映射</button>
+      <button @click="reduceMethod">reduce()累加器</button>
+    </div>
+    <script src=" ../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          items: [1, 3, 5, 7, 9, 2, 4, 6, 8, 0],
+          fruits: [
+            {
+              name: 'apple',
+              count: 2,
+            },
+            {
+              name: 'orange',
+              count: 5,
+            },
+            {
+              name: 'pear',
+              count: 3,
+            },
+            {
+              name: 'orange',
+              count: 16,
+            },
+          ],
+          words: ['apple', 'orange', 'apple', 'orange', 'pear', 'orange'],
         },
-        {
-          name: 'orange',
-          count: 5
-        },
-        {
-          name: 'pear',
-          count: 3
-        },
-        {
-          name: 'orange',
-          count: 16
-        }
-        ],
-        words: ['apple', 'orange', 'apple', 'orange', 'pear', 'orange']
-      },
 
-      computed: {
-        even: function () {
-          return this.items.filter(function (n) {
-            return n % 2 === 0;
-          });
-        }
-      },
-      methods: {
-        odd: function () {
-          return this.items.filter(function (n) {
-            return n % 2 === 1;
-          });
+        computed: {
+          even: function () {
+            return this.items.filter(function (n) {
+              return n % 2 === 0
+            })
+          },
         },
-        indexOfMethod: function () {
-          console.log('数字3第一次出现的位置是：' + this.items.indexOf(3));
-          console.log('数字5第一次出现的位置是：' + this.items.indexOf(5));
-        },
-        filterMethod: function () {
-          // 获得数量不小于5的水果
-          var arr1 = this.fruits.filter(function (f) {
-            return f.count >= 5;
-          });
-          console.log('获得数量不小于5的水果');
-          console.log(JSON.stringify(arr1));
+        methods: {
+          odd: function () {
+            return this.items.filter(function (n) {
+              return n % 2 === 1
+            })
+          },
+          indexOfMethod: function () {
+            // eslint-disable-next-line no-console
+            console.log('数字3第一次出现的位置是：' + this.items.indexOf(3))
+            // eslint-disable-next-line no-console
+            console.log('数字5第一次出现的位置是：' + this.items.indexOf(5))
+          },
+          filterMethod: function () {
+            // 获得数量不小于5的水果
+            var arr1 = this.fruits.filter(function (f) {
+              return f.count >= 5
+            })
+            console.log('获得数量不小于5的水果')
+            console.log(JSON.stringify(arr1))
 
-          // 获得名称中含有r的水果
-          var arr2 = this.fruits.filter(function (f) {
-            /*  i 执行对大小写不敏感的匹配。
+            // 获得名称中含有r的水果
+            var arr2 = this.fruits.filter(function (f) {
+              /*  i 执行对大小写不敏感的匹配。
                 g 执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。
                 m 执行多行匹配。 */
-            return f.name.match(/r/igm);
-          });
-          console.log('获得名称中含有r的水果');
-          console.log(JSON.stringify(arr2));
-        },
-        forEachMethod: function () {
-          this.fruits.forEach(function (obj, index) {
-            console.log((index + 1) + '-' + obj.name + '-' + obj.count);
-          });
-        },
-        mapMethod: function () {
-          var arr3 = this.fruits.map(function (obj, index) {
-            obj.showInfo = index + '->水果：' + obj.name + '，数量：' + obj.count;
-            return obj;
-          });
-          console.log('mach后的结果');
-          console.log(JSON.stringify(arr3));
-        },
-        reduceMethod: function () {
-          this.words.forEach(function (obj, index) {
-            console.log(index + '-' + obj);
-          });
-          var objs = {};
-          for (var i = 0, l = this.words.length; i < l; i++) {
-            var item = this.words[i];
-            objs[item] = (objs[item] + 1) || 1;
-          }
-          console.log(JSON.stringify(objs));
+              return f.name.match(/r/gim)
+            })
+            console.log('获得名称中含有r的水果')
+            console.log(JSON.stringify(arr2))
+          },
+          forEachMethod: function () {
+            this.fruits.forEach(function (obj, index) {
+              console.log(index + 1 + '-' + obj.name + '-' + obj.count)
+            })
+          },
+          mapMethod: function () {
+            var arr3 = this.fruits.map(function (obj, index) {
+              obj.showInfo = index + '->水果：' + obj.name + '，数量：' + obj.count
+              return obj
+            })
+            console.log('mach后的结果')
+            console.log(JSON.stringify(arr3))
+          },
+          reduceMethod: function () {
+            this.words.forEach(function (obj, index) {
+              console.log(index + '-' + obj)
+            })
+            var objs = {}
+            for (var i = 0, l = this.words.length; i < l; i++) {
+              var item = this.words[i]
+              objs[item] = objs[item] + 1 || 1
+            }
+            console.log(JSON.stringify(objs))
 
-          // reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
-          /*
+            // reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+            /*
           array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
             total:必需。初始值, 或者计算结束后的返回值。
             currentValue:必需。当前元素
           */
-          var objs2 = this.words.reduce(function (prev, next) {
-            console.log('prev:', JSON.stringify(prev));
-            console.log('next:', JSON.stringify(next));
+            var objs2 = this.words.reduce(function (prev, next) {
+              console.log('prev:', JSON.stringify(prev))
+              console.log('next:', JSON.stringify(next))
 
-            prev[next] = (prev[next] + 1) || 1;
-            return prev;
-          }, {});
-          console.log(JSON.stringify(objs2));
-        }
-      }
-    });
-  </script>
-</body>
-
+              prev[next] = prev[next] + 1 || 1
+              return prev
+            }, {})
+            console.log(JSON.stringify(objs2))
+          },
+        },
+      })
+    </script>
+  </body>
 </html>

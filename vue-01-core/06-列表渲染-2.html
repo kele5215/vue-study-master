@@ -1,68 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-  <div id="app">
-    <h3>迭代 组件</h3>
-    <template>
-      <p>任务：</p>
-      <input v-model="newTask" type="text" @keyup.enter="addNew" placeholder="qing shu ru ni de ren wu ji hua">
-    </template>
-    <ul>
-      <li is="toDoSomething" v-for="(task, index) in tasks" :title="task.name" @remove="removeItem(index)" :key="index">
-      </li>
-    </ul>
-
-  </div>
-  <script src=" ../node_modules/vue/dist/vue.js"></script>
-  <script type="text/javascript">
-    Vue.component('toDoSomething', {
-      template: "<li>{{title}} <button @click='$emit(\"remove\")'>X</button></li>",
-      props: ['title']
-    });
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        newTask: '',
-        tasks: [{
-          name: 'a'
+  <body>
+    <div id="app">
+      <h3>迭代 组件</h3>
+      <template>
+        <p>任务：</p>
+        <input
+          v-model="newTask"
+          type="text"
+          @keyup.enter="addNew"
+          placeholder="qing shu ru ni de ren wu ji hua"
+        />
+      </template>
+      <ul>
+        <li
+          is="toDoSomething"
+          v-for="(task, index) in tasks"
+          :title="task.name"
+          @remove="removeItem(index)"
+          :key="index"
+        ></li>
+      </ul>
+    </div>
+    <script src=" ../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      Vue.component('toDoSomething', {
+        template: '<li>{{title}} <button @click=\'$emit("remove")\'>X</button></li>',
+        props: ['title'],
+      })
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          newTask: '',
+          tasks: [
+            {
+              name: 'a',
+            },
+            {
+              name: 'b',
+            },
+            {
+              name: 'c',
+            },
+          ],
         },
-        {
-          name: 'b'
+        methods: {
+          addNew: function () {
+            // unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
+            // 提示: 将新项添加到数组末尾，请使用 push() 方法
+            this.tasks.unshift({ name: this.newTask })
+            this.newTask = ''
+            console.log(this.tasks)
+          },
+          removeItem: function (index) {
+            if (confirm('确定要删除吗？')) {
+              // splice() 方法用于添加或删除数组中的元素。
+              // 注意：这种方法会改变原始数组。
+              // 如果仅删除一个元素，则返回一个元素的数组。 如果未删除任何元素，则返回空数组。
+              // index 规定从何处添加/删除元素
+              // howmany 规定应该删除多少元素。必须是数字，但可以是 "0"。
+              console.log(this.tasks[index].name)
+              this.tasks.splice(index, 1)
+            }
+          },
         },
-        {
-          name: 'c'
-        }
-        ]
-      },
-      methods: {
-        addNew: function () {
-          // unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
-          // 提示: 将新项添加到数组末尾，请使用 push() 方法
-          this.tasks.unshift({ name: this.newTask });
-          this.newTask = '';
-          console.log(this.tasks);
-        },
-        removeItem: function (index) {
-          if (confirm('确定要删除吗？')) {
-            // splice() 方法用于添加或删除数组中的元素。
-            // 注意：这种方法会改变原始数组。
-            // 如果仅删除一个元素，则返回一个元素的数组。 如果未删除任何元素，则返回空数组。
-            // index 规定从何处添加/删除元素
-            // howmany 规定应该删除多少元素。必须是数字，但可以是 "0"。
-            console.log(this.tasks[index].name);
-            this.tasks.splice(index, 1);
-          }
-        }
-      }
-    });
-  </script>
-</body>
-
+      })
+    </script>
+  </body>
 </html>

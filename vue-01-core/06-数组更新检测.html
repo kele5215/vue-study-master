@@ -1,59 +1,53 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>列表渲染</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>列表渲染</title>
-</head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="n in items">
+          <h2>{{n}}</h2>
+        </li>
+      </ul>
+      <button @click="items.splice(0,3)">修改数组(变异)</button>
+      <!-- slice() 方法可从已有的数组中返回选定的元素 -->
+      <button @click="items.slice(0,3)">修改数组(不变异)</button>
 
-<body>
-  <div id="app">
-    <ul>
-      <li v-for="n in items">
-        <h2>{{n}}</h2>
-      </li>
-    </ul>
-    <button @click="items.splice(0,3)">修改数组(变异)</button>
-    <!-- slice() 方法可从已有的数组中返回选定的元素 -->
-    <button @click="items.slice(0,3)">修改数组(不变异)</button>
-
-    <p>
-      <span v-for="n in items">
-        {{n}}
-      </span>
-    </p>
-    <p>
-      <span v-for="n in even">
-        {{n}}
-      </span></p>
-    <p>
-      <span v-for="n in odd()">
-        {{n}}
-      </span></p>
-  </div>
-  <script src=" ../node_modules/vue/dist/vue.js"></script>
-  <script type="text/javascript">
-    var app = new Vue({
-      el: '#app',
-      data: {
-        items: [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
-      },
-      computed: {
-        even: function () {
-          return this.items.filter(function (n) {
-            return n % 2 === 0;
-          });
-        }
-      },
-      methods: {
-        odd: function () {
-          return this.items.filter(function (n) {
-            return n % 2 === 1;
-          });
-        }
-      }
-    });
-  </script>
-</body>
-
+      <p>
+        <span v-for="n in items">{{n}}</span>
+      </p>
+      <p>
+        <span v-for="n in even">{{n}}</span>
+      </p>
+      <p>
+        <span v-for="n in odd()">{{n}}</span>
+      </p>
+    </div>
+    <script src=" ../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          items: [1, 3, 5, 7, 9, 2, 4, 6, 8, 0],
+        },
+        computed: {
+          even: function () {
+            return this.items.filter(function (n) {
+              return n % 2 === 0
+            })
+          },
+        },
+        methods: {
+          odd: function () {
+            return this.items.filter(function (n) {
+              return n % 2 === 1
+            })
+          },
+        },
+      })
+    </script>
+  </body>
 </html>

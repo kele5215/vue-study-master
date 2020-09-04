@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app">
+      <h3>class绑定 v-bind:class 或 :class</h3>
+      <p v-bind:class="activeClass">字符串表达式</p>
 
-<body>
-  <div id="app">
-    <h3>class绑定 v-bind:class 或 :class</h3>
-    <p v-bind:class="activeClass">字符串表达式</p>
+      <p :class="{delete: isDelete,error:hasErr}">对象表达式</p>
 
-    <p :class="{delete: isDelete,error:hasErr}">对象表达式</p>
+      <p :class="['active','error']">数组表达式</p>
 
-    <p :class="['active','error']">数组表达式</p>
-
-    <p :style="{color : activeColor, fontSize: fontSize + 'px'}">style绑定</p>
-  </div>
-  <script src=" ../node_modules/vue/dist/vue.js"></script>
-  <script type="text/javascript">
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        activeClass: 'active',
-        isDelete: true,
-        hasErr: true,
-        activeColor: 'burlywood',
-        fontSize: 50
+      <p :style="{color : activeColor, fontSize: fontSize + 'px'}">style绑定</p>
+    </div>
+    <script src=" ../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          activeClass: 'active',
+          isDelete: true,
+          hasErr: true,
+          activeColor: 'burlywood',
+          fontSize: 50,
+        },
+      })
+    </script>
+    <style>
+      .active {
+        color: green;
       }
-    });
-  </script>
-  <style>
-    .active {
-      color: green;
-    }
 
-    .delete {
-      color: blue;
-    }
+      .delete {
+        color: blue;
+      }
 
-    .error {
-      font-size: 30px;
-    }
-  </style>
-</body>
-
+      .error {
+        font-size: 30px;
+      }
+    </style>
+  </body>
 </html>

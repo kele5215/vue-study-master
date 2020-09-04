@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app">
+      <h3>v-if 条件渲染</h3>
+      <input type="checkbox" v-model="seen" />
+      勾选后显示小红快
+      <div v-if="seen" class="box"></div>
+      <p v-else="seen">小红快隐藏</p>
+      <div v-show="seen" class="boxVshow"></div>
 
-<body>
-  <div id="app">
-    <h3>v-if 条件渲染</h3>
-    <input type="checkbox" v-model="seen">勾选后显示小红快
-    <div v-if="seen" class="box"></div>
-    <p v-else="seen">小红快隐藏</p>
-    <div v-show="seen" class="boxVshow"></div>
+      <h3>v-if 条件渲染template</h3>
+      <button type="button" @click="isShow = !isShow">btnYesNo</button>
+      <h1 v-if="isShow">Yes</h1>
+      <h1 v-else>No</h1>
 
-    <h3>v-if 条件渲染template</h3>
-    <button type="button" @click="isShow = !isShow">btnYesNo</button>
-    <h1 v-if="isShow">Yes</h1>
-    <h1 v-else>No</h1>
+      <template v-if="!isShow">
+        <p>item1</p>
+        <p>item2</p>
+        <p>item3</p>
+      </template>
 
-    <template v-if="!isShow">
-      <p>item1</p>
-      <p>item2</p>
-      <p>item3</p>
-    </template>
+      <template v-else>
+        <p>item4</p>
+        <p>item5</p>
+        <p>item6</p>
+      </template>
 
-    <template v-else>
-      <p>item4</p>
-      <p>item5</p>
-      <p>item6</p>
-    </template>
+      <h3>v-else-if 条件渲染</h3>
+      <div v-if="Math.random() > 0.5">Sorry</div>
+      <div v-else>NotSorry</div>
 
-    <h3> v-else-if 条件渲染</h3>
-    <div v-if="Math.random() > 0.5">Sorry</div>
-    <div v-else>NotSorry</div>
+      <div v-if="type === 'A'">A</div>
+      <div v-else-if="type === 'B'">B</div>
+      <div v-else-if="type === 'C'">C</div>
+      <div v-else>Not A/B/C</div>
 
-    <div v-if="type === 'A'">A</div>
-    <div v-else-if="type === 'B'">B</div>
-    <div v-else-if="type === 'C'">C</div>
-    <div v-else>Not A/B/C</div>
+      <template v-if="inType === 'userNm'">
+        <label>账号:</label>
+        <input type="text" placeholder="shu ru ni de nm" key="userNm" />
+      </template>
 
+      <template v-else>
+        <label>Mail:</label>
+        <input type="text" placeholder="shu ru ni de email" key="email" />
+      </template>
 
-    <template v-if="inType === 'userNm'">
-      <label>账号:</label>
-      <input type="text" placeholder="shu ru ni de nm" key="userNm">
-    </template>
-
-    <template v-else>
-      <label>Mail:</label>
-      <input type="text" placeholder="shu ru ni de email" key="email">
-    </template>
-
-    <p> <a href="" @click.prevent="inType='userNm'">用户名登录</a> | <a href="" @click.prevent="inType='email'">邮箱登录</a> </p>
-
-
-  </div>
-  <script src=" ../node_modules/vue/dist/vue.js"></script>
-  <script type="text/javascript">
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        seen: false,
-        isShow: true,
-        type: 'D',
-        inType: 'userEmail'
+      <p>
+        <a href="" @click.prevent="inType='userNm'">用户名登录</a>
+        |
+        <a href="" @click.prevent="inType='email'">邮箱登录</a>
+      </p>
+    </div>
+    <script src=" ../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          seen: false,
+          isShow: true,
+          type: 'D',
+          inType: 'userEmail',
+        },
+      })
+    </script>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background: green;
       }
-    });
-  </script>
-  <style>
-    .box {
-      width: 200px;
-      height: 200px;
-      background: green;
-    }
 
-    .boxVshow {
-      width: 200px;
-      height: 200px;
-      background: red;
-    }
-  </style>
-</body>
-
+      .boxVshow {
+        width: 200px;
+        height: 200px;
+        background: red;
+      }
+    </style>
+  </body>
 </html>
