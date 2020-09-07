@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>過渡效果</title>
+</head>
+
+<!-- .在 CSS 中操作 trasition （过滤 ）或 animation （动画）达到不同效果
+.为目标元素添加一个父元素 <trasition name='xxx'> , 让父元素通过自动应用 class 类名来达到效果
+.过渡与动画时，会为对应元素动态添加的相关 class 类名：
+1. xxx-enter ：定义显示前的效果。
+2. xxx-enter-active ：定义显示过程的效果。
+3. xxx-enter-to : 定义显示后的效果。
+4. xxx-leave : 定义隐藏前的效果。
+5. xxx-leave-active ：定义隐藏过程的效果。
+6. xxx-leave-to :定义隐藏后的效果 -->
+
+<body>
+  <div id="app1">
+    <button @click="show = !show">漸變過渡</button>
+    <transition name="mxg">
+      <p v-if="show">slfjsldfjsdlf</p>
+    </transition>
+  </div>
+
+  <div id="app2">
+    <button @click="show = !show">漸變平滑過渡</button>
+    <transition name="meng">
+      <p v-if="show">test2</p>
+    </transition>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app1',
+      data: {
+        show: true,
+      },
+    })
+
+    var vm = new Vue({
+      el: '#app2',
+      data: {
+        show: true,
+      },
+    })
+  </script>
+
+  <style>
+    /*显示或隐藏的过渡效果*/
+    .mxg-enter-active,
+    .mxg-leave-active {
+      transition: opacity 1s;
+    }
+
+    /*显示前或隐藏后的效果*/
+    .mxg-enter,
+    .mxg-leave-to {
+      opacity: 0
+        /*都是隐藏效果*/
+    }
+
+    /*显示或隐藏的过渡效果*/
+    .meng-enter-active,
+    .meng-leave-active {
+      transition: all 5s;
+    }
+
+    /*显示前或隐藏后的效果*/
+    .meng-enter,
+    .meng-leave-to {
+      /*都是隐藏效果*/
+      opacity: 0;
+      transform: translate(50px);
+    }
+  </style>
+</body>
+
+</html>

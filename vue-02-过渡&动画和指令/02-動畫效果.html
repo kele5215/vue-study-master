@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>動畫效果</title>
+</head>
+
+<!-- .在 CSS 中操作 trasition （过滤 ）或 animation （动画）达到不同效果
+.为目标元素添加一个父元素 <trasition name='xxx'> , 让父元素通过自动应用 class 类名来达到效果
+.过渡与动画时，会为对应元素动态添加的相关 class 类名：
+1. xxx-enter ：定义显示前的效果。
+2. xxx-enter-active ：定义显示过程的效果。
+3. xxx-enter-to : 定义显示后的效果。
+4. xxx-leave : 定义隐藏前的效果。
+5. xxx-leave-active ：定义隐藏过程的效果。
+6. xxx-leave-to :定义隐藏后的效果 -->
+
+<body>
+  <div id="app1">
+    <button @click="show = !show">放大縮小動畫</button>
+    <br>
+    <transition name="bounce">
+      <p v-if="show" style="display: inline-block;">test</p>
+    </transition>
+    <div class="divClass"></div>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app1',
+      data: {
+        show: true,
+      },
+    })
+  </script>
+
+  <style>
+    /*显示或隐藏的过渡效果*/
+    .bounce-enter-active {
+      animation: bounce-in 1s;
+    }
+
+    .bounce-leave-active {
+      animation: bounce-in 3s reverse;
+    }
+
+    @keyframes bounce-in {
+      0% {
+        /*持续时长的百分比，如持续1s，0%表示当0秒，50%表示当0.5秒，100%表示当1秒*/
+        transform: scale(0);
+        /*缩小为0*/
+      }
+
+      50% {
+        transform: scale(1.5);
+        /*放大1.5倍*/
+      }
+
+      100% {
+        transform: scale(1);
+        /*原始大小*/
+      }
+    }
+
+    .divClass {
+      width: 100px;
+      height: 100px;
+      background: red;
+      position: relative;
+      animation: mymove 5s infinite;
+      -webkit-animation: mymove 5s infinite;
+      /* Safari and Chrome */
+    }
+
+    @keyframes mymove {
+      0% {
+        top: 0px;
+        left: 0px;
+        background: red;
+      }
+
+      25% {
+        top: 0px;
+        left: 100px;
+        background: blue;
+      }
+
+      50% {
+        top: 100px;
+        left: 100px;
+        background: yellow;
+      }
+
+      75% {
+        top: 100px;
+        left: 0px;
+        background: green;
+      }
+
+      100% {
+        top: 0px;
+        left: 0px;
+        background: red;
+      }
+    }
+  </style>
+</body>
+
+</html>

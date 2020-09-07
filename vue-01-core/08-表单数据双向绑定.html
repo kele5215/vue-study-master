@@ -1,30 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>表单</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <form>
-        <p>
-          姓名：
-          <input type="text" v-model="txtNm" />
-        </p>
-      </form>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>表单</title>
+</head>
 
-    <script src="../node_modules/vue/dist/vue.js"></script>
-    <script type="text/javascript">
-      var vm = new Vue({
-        el: '#app',
-        data: {
-          txtNm: '',
+<body>
+  <div id="app">
+    <form action="#" @submit.prevent="submitForm">
+      <p>
+        姓名：
+        <input type="text" v-model="txtNm" /><span> 值：{{txtNm}}</span>
+      </p>
+
+      <p>
+        <label>性別：</label>
+        <input type="radio" v-model="sex" value="男" />
+        <label>男</label>
+        <input type="radio" v-model="sex" value="女" />
+        <label>女</label>
+        <input type="radio" v-model="sex" value="保密" />
+        <label>保密</label> 值：{{sex}}
+      </p>
+
+      <p>
+        <label>現居地：</label>
+        <select v-model="city">
+          <option v-for="item in citys" :value="item.code">{{item.name}}</option>
+        </select>
+        值：{{city}}
+      </p>
+
+      <p>
+        <label>技能(多选框)：</label>
+        <input type="checkbox" name="skills" value="java" v-model="skills">Java开发
+        <input type="checkbox" name="skills" value="vue" v-model="skills">Vue.js开发
+        <input type="checkbox" name="skills" value="python" v-model="skills">Python开发
+        值：{{skills}}
+      </p>
+
+      <p>
+        <label>精通：</label>
+        <select v-model="skill1" size="4">
+          <!-- <option value="Java">Java</option>
+          <option value="Pyton">Python</option>
+          <option value="Vue">Vue</option>
+          <option value="Sql">sql</option> -->
+          <option v-for="(item, index) in skill1Arr" :value="item">{{item}}</option>
+        </select>
+        值：{{skill1}}
+      </p>
+
+      <p>
+        <label>擅長:</label>
+        <select v-model="skill2" multiple="multiple" size="5">
+          <!-- <option value="C#">C#</option>
+          <option value="Ruby">Ruby</option>
+          <option value="Go">Go</option>
+          <option value="PHP">PHP</option>
+          <option value="python">python</option> -->
+          <option v-for="item in skill2Arr" :value="item">{{item}}</option>
+        </select>
+        值：{{skill2}}
+      </p>
+
+      <p><button type="submit">提交</button></p>
+
+    </form>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        txtNm: '',
+        sex: '保密',
+        skills: ['vue'],
+        skill1Arr: ['Java', 'Pyton', 'Vue', 'Sql'],
+        skill1: '',
+        skill2Arr: ['C#', 'Ruby', 'Go', 'PHP', 'python'],
+        skill2: [''],
+        citys: [
+          // 初始化下拉框
+          { code: 'bj', name: '北京' },
+          { code: 'sh', name: '上海' },
+          { code: 'sz', name: '深圳' },
+        ],
+        city: 'sz', // 默认选中:深圳,
+      },
+      methods: {
+        submitForm: function () {
+          alert(this.txtNm + ',' + this.sex + ',' + this.skills + ',' + this.city + ',' + this.skill1 + ',' + this.skill2)
         },
-        methods: {},
-      })
-    </script>
-  </body>
+      },
+    })
+  </script>
+</body>
+
 </html>
