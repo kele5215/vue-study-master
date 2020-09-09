@@ -1,7 +1,7 @@
 node_modules/
 **/*.spec.*
 **/style/
-# *.html
+*.html
 /components/test/*
 es/
 lib/
