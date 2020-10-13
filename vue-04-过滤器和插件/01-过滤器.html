@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <h3>过滤器接收多个参数：</h3>
+      <p>{{content | contentFilter}}</p>
+      <input type="text" :value="content | sensitive" />
+      <h3>过滤器接收多个参数：</h3>
+      <p>{{vueScore | add(javaScore, pythonScore)}}</p>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      // Vue.filter('contentFilter', function (value) {
+      //   if (!value) return ''
+      //   return value.replace('sb', '***')
+      // })
+      const app = new Vue({
+        el: '#app',
+        data: {
+          content: 'xiao bai shi ge da sb tmd',
+          vueScore: 80,
+          javaScore: 95,
+          pythonScore: 90,
+        },
+        filters: {
+          contentFilter(value) {
+            if (!value) return ''
+            return value.replace('sb', '***').replace('tmd', '***')
+          },
+          add(num1, num2, num3) {
+            //num1是调用时 | 左边的那个属性值
+            return num1 + num2 + num3
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
