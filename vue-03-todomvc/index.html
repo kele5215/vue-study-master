@@ -26,7 +26,7 @@
             <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
             <!-- 三种状态：未完成（没有样式）、已完成（.completed ）、编辑中( .editing ) -->
             <!--修改:1、v-for迭代; 2、:class={key为class样式名,value为获取的数据true或false}-->
-            <li v-for="(item,index) in filterItems" :key="item.id" :class="{completed : item.completed, editing:item ===currentItem}">
+            <li v-for="(item,index) in items" :key="item.id" :class="{completed : item.completed, editing : item === currentItem}">
               <div class="view">
                 <input class="toggle" type="checkbox" v-model="item.completed" />
                 <label @dblclick="toEdit(item)">{{ item.content }}</label>
@@ -36,9 +36,9 @@
                 class="edit"
                 :value="item.content"
                 @keyup.esc="cancelEdit"
-                @keyup.enter="finishEdit(item,index,$event)"
-                @blur="finishEdit(item,index,$event)"
-                v-todo-focus="item ===currentItem"
+                @keyup.enter="finishEdit(item, index, $event)"
+                @blur="finishEdit(item, index, $event)"
+                v-todo-focus="item === currentItem"
               />
             </li>
             <!-- <li class="completed">
@@ -79,7 +79,11 @@
             </li>
           </ul>
           <!-- Hidden if no completed items are left ↓ -->
+          <<<<<<< Updated upstream
           <button class="clear-completed" @click="removeCompleted" v-show="items.length > remaining">Clear completed</button>
+          =======
+          <button @click="removeCompleted" v-show="items.length > remaining" class="clear-completed">Clear completed</button>
+          >>>>>>> Stashed changes
         </footer>
       </template>
     </section>
