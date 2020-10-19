@@ -29,11 +29,6 @@
     // },
   ]
 
-<<<<<<< Updated upstream
-=======
-  // 自定义全局指令，用于 增加输入框
-  // 定义时不要在前面加v-, 引用指令时要加上v-
->>>>>>> Stashed changes
   Vue.directive('app-focus', {
     inserted(el, binding) {
       el.focus()
@@ -97,11 +92,6 @@
           })
         },
       },
-      filterItems() {
-        switch (this.filterStatus) {
-        	case ""
-        }
-      },
     },
     methods: {
       addItem(event) {
@@ -128,57 +118,35 @@
       removeItem(index) {
         this.items.splice(index, 1)
       },
-<<<<<<< Updated upstream
       removeCompleted() {
-=======
-      removeCompleted(index) {
->>>>>>> Stashed changes
         this.items = this.items.filter(item => !item.completed)
       },
       toEdit(item) {
         this.currentItem = item
       },
       cancelEdit() {
-<<<<<<< Updated upstream
-=======
-        console.log('cancelEdit')
->>>>>>> Stashed changes
         this.currentItem = null
       },
       finishEdit(item, index, event) {
         const content = event.target.value.trim()
 
-<<<<<<< Updated upstream
         if (event.target.value.trim() === '') {
           this.removeItem(index)
         }
         item.content = content
 
-=======
-        if (!event.target.value.trim()) {
-          this.removeItem(index)
-          return
-        }
-
-        item.content = content
->>>>>>> Stashed changes
         this.currentItem = null
       },
     },
   })
 
   window.onhashchange = function () {
-<<<<<<< Updated upstream
     console.log('hash改變了', window.location.hash)
 
     const hash = window.location.hash.substr(2) || 'all'
 
     console.log('hash: ', hash)
 
-=======
-    console.log('hash 改变了', window.location.hash)
-    const hash = window.location.hash.substr(2) || 'all'
->>>>>>> Stashed changes
     app.filterStatus = hash
   }
 
