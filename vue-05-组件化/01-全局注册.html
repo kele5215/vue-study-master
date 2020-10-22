@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 通过组件名直接使用, 不能使用驼峰形式 -->
+      <component-a></component-a>
+      <component-b></component-b>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      Vue.component('component-a', {
+        template: '<div><h1>头部组件 - {{name}}</h1></div>',
+        data: function () {
+          return {
+            name: '全局组件',
+          }
+        },
+      })
+
+      // 定义局部组件对象
+      const ComponentB = {
+        template: '<div> 这是：{{ name }}</div>',
+        data: function () {
+          return {
+            name: '局部组件',
+          }
+        },
+      }
+      new Vue({
+        el: '#app',
+        components: {
+          'component-b': ComponentB,
+        },
+      })
+    </script>
+  </body>
+</html>

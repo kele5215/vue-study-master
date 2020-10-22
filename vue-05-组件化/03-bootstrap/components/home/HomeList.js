@@ -1,0 +1,139 @@
+;(function f() {
+  const template =
+    '            <div class="table-responsive">\n' +
+    '              <table class="table table-striped">\n' +
+    '                <thead>\n' +
+    '                  <tr>\n' +
+    '                    <th>#</th>\n' +
+    '                    <th>Header</th>\n' +
+    '                    <th>Header</th>\n' +
+    '                    <th>Header</th>\n' +
+    '                    <th>Header</th>\n' +
+    '                  </tr>\n' +
+    '                </thead>\n' +
+    '                <tbody>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,001</td>\n' +
+    '                    <td>{{ name }}</td>\n' +
+    '                    <td>ipsum</td>\n' +
+    '                    <td>dolor</td>\n' +
+    '                    <td>sit</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,002</td>\n' +
+    '                    <td>amet</td>\n' +
+    '                    <td>consectetur</td>\n' +
+    '                    <td>adipiscing</td>\n' +
+    '                    <td>elit</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,003</td>\n' +
+    '                    <td>Integer</td>\n' +
+    '                    <td>nec</td>\n' +
+    '                    <td>odio</td>\n' +
+    '                    <td>Praesent</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,003</td>\n' +
+    '                    <td>libero</td>\n' +
+    '                    <td>Sed</td>\n' +
+    '                    <td>cursus</td>\n' +
+    '                    <td>ante</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,004</td>\n' +
+    '                    <td>dapibus</td>\n' +
+    '                    <td>diam</td>\n' +
+    '                    <td>Sed</td>\n' +
+    '                    <td>nisi</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,005</td>\n' +
+    '                    <td>Nulla</td>\n' +
+    '                    <td>quis</td>\n' +
+    '                    <td>sem</td>\n' +
+    '                    <td>at</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,006</td>\n' +
+    '                    <td>nibh</td>\n' +
+    '                    <td>elementum</td>\n' +
+    '                    <td>imperdiet</td>\n' +
+    '                    <td>Duis</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,007</td>\n' +
+    '                    <td>sagittis</td>\n' +
+    '                    <td>ipsum</td>\n' +
+    '                    <td>Praesent</td>\n' +
+    '                    <td>mauris</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,008</td>\n' +
+    '                    <td>Fusce</td>\n' +
+    '                    <td>nec</td>\n' +
+    '                    <td>tellus</td>\n' +
+    '                    <td>sed</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,009</td>\n' +
+    '                    <td>augue</td>\n' +
+    '                    <td>semper</td>\n' +
+    '                    <td>porta</td>\n' +
+    '                    <td>Mauris</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,010</td>\n' +
+    '                    <td>massa</td>\n' +
+    '                    <td>Vestibulum</td>\n' +
+    '                    <td>lacinia</td>\n' +
+    '                    <td>arcu</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,011</td>\n' +
+    '                    <td>eget</td>\n' +
+    '                    <td>nulla</td>\n' +
+    '                    <td>Class</td>\n' +
+    '                    <td>aptent</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,012</td>\n' +
+    '                    <td>taciti</td>\n' +
+    '                    <td>sociosqu</td>\n' +
+    '                    <td>ad</td>\n' +
+    '                    <td>litora</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,013</td>\n' +
+    '                    <td>torquent</td>\n' +
+    '                    <td>per</td>\n' +
+    '                    <td>conubia</td>\n' +
+    '                    <td>nostra</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,014</td>\n' +
+    '                    <td>per</td>\n' +
+    '                    <td>inceptos</td>\n' +
+    '                    <td>himenaeos</td>\n' +
+    '                    <td>Curabitur</td>\n' +
+    '                  </tr>\n' +
+    '                  <tr>\n' +
+    '                    <td>1,015</td>\n' +
+    '                    <td>sodales</td>\n' +
+    '                    <td>ligula</td>\n' +
+    '                    <td>in</td>\n' +
+    '                    <td>libero</td>\n' +
+    '                  </tr>\n' +
+    '                </tbody>\n' +
+    '              </table>\n' +
+    '            </div>'
+
+  window.HomeList = {
+    template,
+    data() {
+      return {
+        name: 'mytest',
+      }
+    },
+  }
+})()
