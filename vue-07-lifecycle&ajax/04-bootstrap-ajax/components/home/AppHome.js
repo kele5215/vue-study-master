@@ -15,13 +15,27 @@
     data: function () {
       return {
         hobbies: ['看书', '台球', '睡觉', '撸代码'],
-        empList: [
-          { id: 1, name: '小梦1', age: 24, placeOfBirth: '出身地1', salary: 80001 },
-          { id: 2, name: '小梦2', age: 24, placeOfBirth: '出身地2', salary: 80002 },
-          { id: 3, name: '小梦3', age: 24, placeOfBirth: '出身地3', salary: 80003 },
-          { id: 4, name: '小梦4', age: 24, placeOfBirth: '出身地4', salary: 80004 },
-        ],
+        // empList: [
+        //   { id: 1, name: '小梦1', age: 24, placeOfBirth: '出身地1', salary: 80001 },
+        //   { id: 2, name: '小梦2', age: 24, placeOfBirth: '出身地2', salary: 80002 },
+        //   { id: 3, name: '小梦3', age: 24, placeOfBirth: '出身地3', salary: 80003 },
+        //   { id: 4, name: '小梦4', age: 24, placeOfBirth: '出身地4', salary: 80004 },
+        // ],
+        empList: [],
       }
+    },
+
+    created () {
+      var strURI = 'http://127.0.0.1:5500/vue-07-lifecycle&ajax/04-bootstrap-ajax/emp.json'
+      axios.get(strURI).then(
+        response => {
+          console.log(response.data)
+          this.empList = response.data
+        },
+        error => {
+          console.log(error.message)
+        }
+      )
     },
 
     methods: {

@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "小梦1", "age": 24, "placeOfBirth": "出身地1", "salary": 80001 },
+  { "id": 2, "name": "小梦2", "age": 24, "placeOfBirth": "出身地2", "salary": 80002 },
+  { "id": 3, "name": "小梦3", "age": 24, "placeOfBirth": "出身地3", "salary": 80003 },
+  { "id": 4, "name": "小梦4", "age": 24, "placeOfBirth": "出身地4", "salary": 80004 },
+  { "id": 5, "name": "小梦5", "age": 24, "placeOfBirth": "出身地5", "salary": 80005 },
+  { "id": 6, "name": "小梦6", "age": 24, "placeOfBirth": "出身地6", "salary": 80006 }
+]
