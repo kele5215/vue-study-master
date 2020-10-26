@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="style/dashboard.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="app">
+      <!--      &lt;!&ndash;头部导航区域&ndash;&gt;-->
+      <!--      <app-navbar></app-navbar>-->
+
+      <!--      &lt;!&ndash;核心区域:分左右两边&ndash;&gt;-->
+      <!--      <div class="container-fluid">-->
+      <!--        <div class="row">-->
+      <!--          &lt;!&ndash;左边菜单栏区域&ndash;&gt;-->
+      <!--          <app-leaf></app-leaf>-->
+
+      <!--          &lt;!&ndash;右边主页面区域: 分上下两个区域&ndash;&gt;-->
+      <!--          <app-home></app-home>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <app></app>-->
+    </div>
+    <script src="../../node_modules/vue/dist/vue.js" type="text/javascript"></script>
+    <script src="../../node_modules/axios/dist/axios.js" type="text/javascript"></script>
+    <script src="../../node_modules/vue-router/dist/vue-router.js" type="text/javascript"></script>
+    <!-- 注意要在 vue.js 下面引入 -->
+    <script src="components/AppNavbar.js"></script>
+    <script src="components/AppLeaf.js"></script>
+    <!-- 注意：Dashboard.js 要在 Home.js 前面引入 -->
+    <script src="components/home/Item.js"></script>
+    <script src="components/home/Dashboard.js"></script>
+    <script src="components/home/HomeList.js"></script>
+    <script src="components/home/AppHome.js"></script>
+    <!-- 引入 News.js About.js router.js-->
+    <script src="components/home/News.js"></script>
+
+    <script src="components/home/SportDetail.js"></script>
+    <script src="components/home/TechDetail.js"></script>
+    <script src="components/home/Sport.js"></script>
+    <script src="components/home/Tech.js"></script>
+
+
+    <script src="components/home/About.js"></script>
+    <script src="router.js"></script>
+    <!-- <script src="components/home/AppHome.vue"></script> -->
+    <script src="App.js"></script>
+    <!-- <script src="App.vue"></script> -->
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -11,9 +11,15 @@
     '          <app-leaf></app-leaf>\n' +
     '\n' +
     '          <!--右边主页面区域: 分上下两个区域-->\n' +
-    '          <app-home>\n' +
+    // '          <app-home>\n' +
+    // '             <h1 slot="dashboard" class="page-header">{{title}}</h1>\n' +
+    // '          </app-home>\n' +
+    '          <!--配置路由渲染组件出口-->\n' +
+    '          <keep-alive>\n' +
+    '          <router-view>\n' +
     '             <h1 slot="dashboard" class="page-header">{{title}}</h1>\n' +
-    '          </app-home>\n' +
+    '          </router-view>\n' +
+    '          </keep-alive>\n' +
     '        </div>\n' +
     '      </div>\n' +
     '    </div>'

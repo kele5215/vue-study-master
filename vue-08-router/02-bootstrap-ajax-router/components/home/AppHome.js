@@ -26,7 +26,7 @@
     },
 
     created() {
-      var strURI = 'http://127.0.0.1:5500/vue-07-lifecycle&ajax/04-bootstrap-ajax/emp.json'
+      const strURI = 'http://localhost:63342/vue-study-master/vue-08-router/02-bootstrap-ajax-router/emp.json'
       axios.get(strURI).then(
         response => {
           console.log(response.data)
