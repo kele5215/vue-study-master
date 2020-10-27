@@ -1,4 +1,4 @@
-;(function f() {
+; (function f () {
   const template =
     '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">\n' +
     '            <!--右边上半区域-->\n' +
@@ -25,8 +25,8 @@
       }
     },
 
-    created() {
-      const strURI = 'http://localhost:63342/vue-study-master/vue-08-router/02-bootstrap-ajax-router/emp.json'
+    created () {
+      const strURI = 'http://localhost:5500/vue-08-router/02-bootstrap-ajax-router/emp.json'
       axios.get(strURI).then(
         response => {
           console.log(response.data)
@@ -42,11 +42,11 @@
       // 删除指定下标的数据
       // 因为删除 emp 会对 empList 做更新操作，
       // 而 empList 是初始化在当前这个组件里，所以删除的函数要定义在这个组件中
-      deleteEmp(index) {
+      deleteEmp (index) {
         this.empList.splice(index, 1)
       },
       // 删除爱好
-      deleteHobby(index) {
+      deleteHobby (index) {
         this.hobbies.splice(index, 1)
       },
     },

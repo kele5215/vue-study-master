@@ -1,4 +1,4 @@
-;(function () {
+; (function () {
   const template = `  <!--体育栏目-->
     <div>
         <ul>
@@ -17,18 +17,18 @@
     </div>  `
 
   window.Sport = {
-    data() {
+    data () {
       return {
         sportArr: [],
       }
     },
-    created() {
+    created () {
       this.getSportArr()
     },
 
     methods: {
-      getSportArr() {
-        const strURI = 'http://localhost:63342/vue-study-master/vue-08-router/02-bootstrap-ajax-router/db/sport.json'
+      getSportArr () {
+        const strURI = 'http://localhost:5500/vue-08-router/02-bootstrap-ajax-router/db/sport.json'
         axios
           .get(strURI)
           .then(response => {

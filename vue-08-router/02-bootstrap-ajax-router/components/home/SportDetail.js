@@ -1,4 +1,4 @@
-;(function () {
+; (function () {
   const template = `
   <div class="jumbotron">
     <h1>ID:{{id}}</h1>
@@ -9,19 +9,19 @@
 
   window.SportDetail = {
     template,
-    data() {
+    data () {
       return {
         id: null,
         sportDetail: {},
       }
     },
-    created() {
+    created () {
       this.getReportById()
     },
     methods: {
-      getReportById() {
+      getReportById () {
         this.id = this.$route.params.id - 0
-        const strURL = 'http://localhost:63342/vue-study-master/vue-08-router/02-bootstrap-ajax-router/db/sport.json'
+        const strURL = 'http://localhost:5500/vue-08-router/02-bootstrap-ajax-router/db/sport.json'
         axios
           .get(strURL)
           .then(response => {
